@@ -78,3 +78,7 @@ googletest-src
 install_manifest.txt
 pack_*/
 rules.ninja
+
+# medskalin
+build.bat
+_test.exe
