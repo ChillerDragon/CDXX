@@ -3,6 +3,7 @@ CheckVersion("0.5")
 Import("configure.lua")
 Import("other/sdl/sdl.lua")
 Import("other/freetype/freetype.lua")
+Import("other/v8/v8.lua")
 
 --- Setup Config -------
 config = NewConfig()
@@ -13,6 +14,7 @@ config:Add(OptTestCompileC("buildwithoutsseflag", "#include <immintrin.h>\nint m
 config:Add(OptLibrary("zlib", "zlib.h", false))
 config:Add(SDL.OptFind("sdl", true))
 config:Add(FreeType.OptFind("freetype", true))
+config:Add(V8.OptFind("v8", true))
 config:Finalize("config.lua")
 
 generated_src_dir = "build/src"
@@ -351,6 +353,7 @@ end
 function BuildClient(settings, family, platform)
 	config.sdl:Apply(settings)
 	config.freetype:Apply(settings)
+	config.v8:Apply(settings)
 	
 	local client = Compile(settings, Collect("src/engine/client/*.cpp"))
 	
@@ -403,8 +406,17 @@ function BuildContent(settings, arch, conf)
 		)
 		table.insert(content, CopyFile(settings.link.Output(settings, "") .. "/SDL2.dll", "other/sdl/windows/lib" .. _arch .. "/SDL2.dll"))
 		table.insert(content, CopyFile(settings.link.Output(settings, "") .. "/freetype.dll", "other/freetype/windows/lib" .. _arch .. "/freetype.dll"))
+		table.insert(content, CopyFile(settings.link.Output(settings, "") .. "/v8.dll", "other/v8/windows/lib" .. _arch .. "/v8.dll"))
+		table.insert(content, CopyFile(settings.link.Output(settings, "") .. "/v8_libbase.dll", "other/v8/windows/lib" .. _arch .. "/v8_libbase.dll"))
+		table.insert(content, CopyFile(settings.link.Output(settings, "") .. "/icui18n.dll", "other/v8/windows/lib" .. _arch .. "/icui18n.dll"))
+		table.insert(content, CopyFile(settings.link.Output(settings, "") .. "/v8_libplatform.dll", "other/v8/windows/lib" .. _arch .. "/v8_libplatform.dll"))
+		table.insert(content, CopyFile(settings.link.Output(settings, "") .. "/icudtl.dat", "other/v8/windows/lib" .. _arch .. "/icudtl.dat")) -- for "complex code", whatever that is supposed to mean xd
 		AddDependency(settings.link.Output(settings, "") .. "/SDL2.dll", "other/sdl/include/SDL.h")
 		AddDependency(settings.link.Output(settings, "") .. "/freetype.dll", "other/freetype/include/ft2build.h")
+		AddDependency(settings.link.Output(settings, "") .. "/v8.dll", "other/v8/include/v8.h")
+		--AddDependency(settings.link.Output(settings, "") .. "/v8_libbase.dll", "other/v8/include/v8_libbase.h")
+		--AddDependency(settings.link.Output(settings, "") .. "/icui18n.dll", "other/v8/include/icui18n.h")
+		--AddDependency(settings.link.Output(settings, "") .. "/v8_libplatform.dll", "other/v8/include/v8_libplatform.h")
 	end
 	PseudoTarget(settings.link.Output(settings, "content") .. settings.link.extension, content)
 end
