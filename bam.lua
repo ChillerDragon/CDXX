@@ -85,6 +85,7 @@ end
 function GenerateCommonSettings(settings, conf, arch, compiler)
 	if compiler == "gcc" or compiler == "clang" then
 		settings.cc.flags:Add("-Wall", "-fno-exceptions")
+		settings.link.flags:Add("-static")
 	end
 
 	-- Compile zlib if needed
