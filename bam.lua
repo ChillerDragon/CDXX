@@ -87,6 +87,8 @@ function GenerateCommonSettings(settings, conf, arch, compiler)
 		settings.cc.flags:Add("-Wall", "-fno-exceptions")
 	end
 
+	settings.cc.flags_cxx:Add("-std=c++0x")
+
 	-- Compile zlib if needed
 	local zlib = nil
 	if config.zlib.value == 1 then
