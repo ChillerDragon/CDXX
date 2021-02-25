@@ -85,7 +85,6 @@ end
 function GenerateCommonSettings(settings, conf, arch, compiler)
 	if compiler == "gcc" or compiler == "clang" then
 		settings.cc.flags:Add("-Wall", "-fno-exceptions")
-		settings.link.flags:Add("-static")
 	end
 
 	-- Compile zlib if needed
@@ -239,6 +238,10 @@ function GenerateWindowsSettings(settings, conf, target_arch, compiler)
 		-- disable visibility attribute support for gcc on windows
 		settings.cc.defines:Add("NO_VIZ")
 		settings.cc.defines:Add("_WIN32_WINNT=0x0501")
+
+		if compiler == "gcc" then
+			settings.link.flags:Add("-static")
+		end
 	end
 
 	local icons = SharedIcons(compiler)
