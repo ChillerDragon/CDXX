@@ -15,7 +15,7 @@ endif()
 
 set_extra_dirs_lib(V8 v8)
 find_library(V8_LIBRARY
-  NAMES V8
+  NAMES v8.dll v8_libbase.dll icui18n.dll icuuc.dll v8_libplatform.dll
   HINTS ${HINTS_V8_LIBDIR} ${V8_LIBDIR} ${PC_V8_LIBDIR} ${PC_V8_LIBRARY_DIRS}
   PATHS ${PATHS_V8_LIBDIR}
   ${CROSSCOMPILING_NO_CMAKE_SYSTEM_PATH}
@@ -39,12 +39,14 @@ if(V8_FOUND)
 
   is_bundled(V8_BUNDLED "${V8_LIBRARY}")
   if(V8_BUNDLED AND TARGET_OS STREQUAL "windows")
-    set(V8_COPY_FILES "${EXTRA_V8_LIBDIR}/v8.dll")
-    set(V8_COPY_FILES "${EXTRA_V8_LIBDIR}/v8_libbase.dll")
-    set(V8_COPY_FILES "${EXTRA_V8_LIBDIR}/icui18n.dll")
-    set(V8_COPY_FILES "${EXTRA_V8_LIBDIR}/icuuc.dll")
-    set(V8_COPY_FILES "${EXTRA_V8_LIBDIR}/v8_libplatform.dll")
-    set(V8_COPY_FILES "${EXTRA_V8_LIBDIR}/icudtl.dat")
+    set(V8_COPY_FILES
+          "${EXTRA_V8_LIBDIR}/v8.dll"
+          "${EXTRA_V8_LIBDIR}/v8_libbase.dll"
+          "${EXTRA_V8_LIBDIR}/icui18n.dll"
+          "${EXTRA_V8_LIBDIR}/icuuc.dll"
+          "${EXTRA_V8_LIBDIR}/v8_libplatform.dll"
+          "${EXTRA_V8_LIBDIR}/icudtl.dat"
+      )
   else()
     set(V8_COPY_FILES)
   endif()

@@ -27,6 +27,7 @@ V8 = {
 				settings.link.libs:Add("v8")
 				settings.link.libs:Add("v8_libbase")
 				settings.link.libs:Add("icui18n")
+				settings.link.libs:Add("icuuc")
 				settings.link.libs:Add("v8_libplatform")
 
 			end

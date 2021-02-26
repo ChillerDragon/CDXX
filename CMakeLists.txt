@@ -306,6 +306,7 @@ find_package(Pnglite)
 find_package(SDL2)
 find_package(Threads)
 find_package(Wavpack)
+find_package(V8)
 
 
 if(TARGET_OS AND TARGET_OS STREQUAL "mac")
@@ -358,6 +359,7 @@ show_dependency_status("PythonInterp" PYTHONINTERP)
 show_dependency_status("SDL2" SDL2)
 show_dependency_status("Wavpack" WAVPACK)
 show_dependency_status("Zlib" ZLIB)
+show_dependency_status("V8" V8)
 
 if(NOT(PYTHONINTERP_FOUND))
   message(SEND_ERROR "You must install Python to compile Teeworlds")
@@ -380,6 +382,9 @@ if(NOT(GTEST_FOUND))
   else()
     message(STATUS "To run the tests, you have to install GTest")
   endif()
+endif()
+if(CLIENT AND NOT(V8_FOUND))
+  message(SEND_ERROR "You must install V8 to compile the Teeworlds client")
 endif()
 
 if(TARGET_OS STREQUAL "windows")
@@ -1190,6 +1195,7 @@ endforeach()
 set(COPY_FILES
   ${FREETYPE_COPY_FILES}
   ${SDL2_COPY_FILES}
+  ${V8_COPY_FILES}
 )
 file(COPY ${COPY_FILES} DESTINATION .)
 
@@ -1528,6 +1534,7 @@ if(CLIENT)
     ${PNGLITE_LIBRARIES}
     ${SDL2_LIBRARIES}
     ${WAVPACK_LIBRARIES}
+    ${V8_LIBRARIES}
     ${PLATFORM_CLIENT_LIBS}
   )
 
@@ -1558,6 +1565,7 @@ if(CLIENT)
     ${FREETYPE_INCLUDE_DIRS}
     ${PNGLITE_INCLUDE_DIRS}
     ${SDL2_INCLUDE_DIRS}
+    ${V8_INCLUDE_DIRS}
     ${WAVPACK_INCLUDE_DIRS}
   )
 
@@ -1953,6 +1961,7 @@ if(CLIENT AND (DMGTOOLS_FOUND OR HDIUTIL))
     COMMAND ${CMAKE_COMMAND} -E copy bundle/client/Info.plist ${PROJECT_SOURCE_DIR}/other/bundle/client/PkgInfo ${DMG_TMPDIR}/${TARGET_CLIENT}.app/Contents/
     COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${TARGET_CLIENT}> ${DMG_TMPDIR}/${TARGET_CLIENT}.app/Contents/MacOS/
     COMMAND ${CMAKE_COMMAND} -E copy ${SDL2_LIBRARY} ${DMG_TMPDIR}/${TARGET_CLIENT}.app/Contents/Frameworks/libSDL2-2.0.0.dylib
+    # bla bla add v8 here one day
     COMMAND ${CMAKE_COMMAND} -E copy ${FREETYPE_LIBRARY} ${DMG_TMPDIR}/${TARGET_CLIENT}.app/Contents/Frameworks/libfreetype.6.dylib
     COMMAND ${PYTHON_EXECUTABLE} ${PROJECT_SOURCE_DIR}/scripts/darwin_change_dylib.py change --tools ${CMAKE_INSTALL_NAME_TOOL} ${CMAKE_OTOOL} ${DMG_TMPDIR}/${TARGET_CLIENT}.app/Contents/MacOS/${TARGET_CLIENT} SDL2 @executable_path/../Frameworks/libSDL2-2.0.0.dylib
     COMMAND ${PYTHON_EXECUTABLE} ${PROJECT_SOURCE_DIR}/scripts/darwin_change_dylib.py change --tools ${CMAKE_INSTALL_NAME_TOOL} ${CMAKE_OTOOL} ${DMG_TMPDIR}/${TARGET_CLIENT}.app/Contents/MacOS/${TARGET_CLIENT} libfreetype @executable_path/../Frameworks/libfreetype.6.dylib
