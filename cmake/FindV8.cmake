@@ -15,7 +15,7 @@ endif()
 
 set_extra_dirs_lib(V8 v8)
 find_library(V8_LIBRARY
-  NAMES v8.dll v8_libbase.dll icui18n.dll icuuc.dll v8_libplatform.dll
+  NAMES v8.dll v8_libbase.dll icui18n.dll icuuc.dll v8_libplatform.dll v8 v8_libbase icui18n icuuc v8_libplatform
   HINTS ${HINTS_V8_LIBDIR} ${V8_LIBDIR} ${PC_V8_LIBDIR} ${PC_V8_LIBRARY_DIRS}
   PATHS ${PATHS_V8_LIBDIR}
   ${CROSSCOMPILING_NO_CMAKE_SYSTEM_PATH}
