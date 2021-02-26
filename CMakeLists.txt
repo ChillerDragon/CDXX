@@ -141,7 +141,9 @@ if(NOT MSVC)
   add_c_compiler_flag_if_supported(OUR_FLAGS -fstack-protector-strong)
 
   # Protect the stack from clashing.
-  add_c_compiler_flag_if_supported(OUR_FLAGS -fstack-clash-protection)
+  if(NOT MINGW)
+    add_c_compiler_flag_if_supported(OUR_FLAGS -fstack-clash-protection)
+  endif()
 
   # Control-flow protection. Should protect against ROP.
   add_c_compiler_flag_if_supported(OUR_FLAGS -fcf-protection)
@@ -2110,7 +2112,7 @@ foreach(target ${TARGETS_LINK})
     if(MINGW)
       # Link pthread library statically instead of dynamically.
       # Solution from https://stackoverflow.com/a/28001261.
-      target_link_libraries(${target} -Wl,-Bstatic -lstdc++ -lpthread -Wl,-Bdynamic)
+      target_link_libraries(${target} -Wl,-Bstatic -lstdc++ -lpthread -Wl,-Bdynamic -fstack-protector)
     endif()
   endif()
 endforeach()
