@@ -135,6 +135,9 @@ function(add_c_compiler_flag_if_supported VARIABLE FLAG)
   endif()
 endfunction()
 
+# medskalin
+add_c_compiler_flag_if_supported(OUR_FLAGS -std=c++14)
+
 if(NOT MSVC)
   # Protect the stack pointer.
   # -fstack-protector-all doesn't work on MinGW.
@@ -144,6 +147,14 @@ if(NOT MSVC)
   if(NOT MINGW)
     add_c_compiler_flag_if_supported(OUR_FLAGS -fstack-clash-protection)
   endif()
+
+  # required for v8
+  add_c_compiler_flag_if_supported(OUR_FLAGS -fno-rtti)
+  add_c_compiler_flag_if_supported(OUR_FLAGS -fpic)
+
+  # make v8 cooler
+  add_c_compiler_flag_if_supported(OUR_FLAGS -DV8_COMPRESS_POINTERS -DV8_31BIT_SMIS_ON_64BIT_ARCH)
+  add_c_compiler_flag_if_supported(OUR_FLAGS -DV8_31BIT_SMIS_ON_64BIT_ARCH)
 
   # Control-flow protection. Should protect against ROP.
   add_c_compiler_flag_if_supported(OUR_FLAGS -fcf-protection)
@@ -1426,6 +1437,8 @@ if(CLIENT)
     sound.h
     textrender.cpp
     textrender.h
+    v8test.cpp
+    v8test.h
   )
   set_src(GAME_CLIENT GLOB_RECURSE src/game/client
     animstate.cpp
