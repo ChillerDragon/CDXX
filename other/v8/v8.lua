@@ -24,12 +24,13 @@ V8 = {
 				else
 					settings.link.libpath:Add(V8.basepath .. "/windows/lib64")
 				end
-				settings.link.libs:Add("v8")
-				settings.link.libs:Add("v8_libbase")
-				settings.link.libs:Add("icui18n")
-				settings.link.libs:Add("icuuc")
-				settings.link.libs:Add("v8_libplatform")
 
+				settings.link.libs:Add("v8.dll")
+				settings.link.libs:Add("v8_libbase.dll")
+				--settings.link.libs:Add("icui18n.dll")
+				--settings.link.libs:Add("icuuc.dll")
+				settings.link.libs:Add("v8_libplatform.dll")
+				settings.link.libs:Add("zlib.dll")
 			end
 		end
 

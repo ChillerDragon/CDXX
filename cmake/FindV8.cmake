@@ -45,6 +45,7 @@ if(V8_FOUND)
           "${EXTRA_V8_LIBDIR}/icui18n.dll"
           "${EXTRA_V8_LIBDIR}/icuuc.dll"
           "${EXTRA_V8_LIBDIR}/v8_libplatform.dll"
+          "${EXTRA_V8_LIBDIR}/zlib.dll"
           "${EXTRA_V8_LIBDIR}/icudtl.dat"
       )
   else()

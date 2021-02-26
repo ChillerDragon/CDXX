@@ -89,8 +89,6 @@ function GenerateCommonSettings(settings, conf, arch, compiler)
 		settings.cc.flags:Add("-Wall", "-fno-exceptions")
 	end
 
-	settings.cc.flags_cxx:Add("-std=c++0x")
-
 	-- Compile zlib if needed
 	local zlib = nil
 	if config.zlib.value == 1 then
@@ -411,6 +409,7 @@ function BuildContent(settings, arch, conf)
 		table.insert(content, CopyFile(settings.link.Output(settings, "") .. "/icui18n.dll", "other/v8/windows/lib" .. _arch .. "/icui18n.dll"))
 		table.insert(content, CopyFile(settings.link.Output(settings, "") .. "/icuuc.dll", "other/v8/windows/lib" .. _arch .. "/icuuc.dll"))
 		table.insert(content, CopyFile(settings.link.Output(settings, "") .. "/v8_libplatform.dll", "other/v8/windows/lib" .. _arch .. "/v8_libplatform.dll"))
+		table.insert(content, CopyFile(settings.link.Output(settings, "") .. "/zlib.dll", "other/v8/windows/lib" .. _arch .. "/zlib.dll"))
 		table.insert(content, CopyFile(settings.link.Output(settings, "") .. "/icudtl.dat", "other/v8/windows/lib" .. _arch .. "/icudtl.dat")) -- for "complex code", whatever that is supposed to mean xd
 		AddDependency(settings.link.Output(settings, "") .. "/SDL2.dll", "other/sdl/include/SDL.h")
 		AddDependency(settings.link.Output(settings, "") .. "/freetype.dll", "other/freetype/include/ft2build.h")

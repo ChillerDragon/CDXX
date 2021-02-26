@@ -3,6 +3,10 @@ if(CMAKE_VERSION VERSION_LESS 3.12)
   cmake_policy(VERSION ${CMAKE_VERSION})
 endif()
 
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
 file(STRINGS src/game/version.h VERSION_LINE
   LIMIT_COUNT 1
   REGEX GAME_RELEASE_VERSION
@@ -144,6 +148,14 @@ if(NOT MSVC)
   if(NOT MINGW)
     add_c_compiler_flag_if_supported(OUR_FLAGS -fstack-clash-protection)
   endif()
+
+  # required for v8
+  add_c_compiler_flag_if_supported(OUR_FLAGS -fno-rtti)
+  add_c_compiler_flag_if_supported(OUR_FLAGS -fpic)
+
+  # make v8 cooler
+  add_c_compiler_flag_if_supported(OUR_FLAGS -DV8_COMPRESS_POINTERS -DV8_31BIT_SMIS_ON_64BIT_ARCH)
+  add_c_compiler_flag_if_supported(OUR_FLAGS -DV8_31BIT_SMIS_ON_64BIT_ARCH)
 
   # Control-flow protection. Should protect against ROP.
   add_c_compiler_flag_if_supported(OUR_FLAGS -fcf-protection)
@@ -1426,6 +1438,8 @@ if(CLIENT)
     sound.h
     textrender.cpp
     textrender.h
+    v8test.cpp
+    v8test.h
   )
   set_src(GAME_CLIENT GLOB_RECURSE src/game/client
     animstate.cpp
