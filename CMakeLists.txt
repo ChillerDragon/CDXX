@@ -3,6 +3,10 @@ if(CMAKE_VERSION VERSION_LESS 3.12)
   cmake_policy(VERSION ${CMAKE_VERSION})
 endif()
 
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
 file(STRINGS src/game/version.h VERSION_LINE
   LIMIT_COUNT 1
   REGEX GAME_RELEASE_VERSION
@@ -134,9 +138,6 @@ function(add_c_compiler_flag_if_supported VARIABLE FLAG)
     endif()
   endif()
 endfunction()
-
-# medskalin
-add_c_compiler_flag_if_supported(OUR_FLAGS -std=c++14)
 
 if(NOT MSVC)
   # Protect the stack pointer.

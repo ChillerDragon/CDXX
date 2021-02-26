@@ -8,6 +8,7 @@ class CV8Test
 {
 public:
 	CV8Test();
+private:
 };
 
 #endif

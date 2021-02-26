@@ -44,7 +44,7 @@
 #include "serverbrowser.h"
 #include "client.h"
 
-#include "v8test.cpp"
+#include "v8test.h"
 
 #if defined(CONF_FAMILY_WINDOWS)
 	#define WIN32_LEAN_AND_MEAN
@@ -239,6 +239,7 @@ void CSmoothTime::Update(CGraph *pGraph, int64 Target, int TimeLeft, int AdjustD
 
 CClient::CClient() : m_DemoPlayer(&m_SnapshotDelta), m_DemoRecorder(&m_SnapshotDelta)
 {
+	dbg_msg("dasdas", "dasdasdadsda");
 	m_pEditor = 0;
 	m_pInput = 0;
 	m_pGraphics = 0;
@@ -307,9 +308,6 @@ CClient::CClient() : m_DemoPlayer(&m_SnapshotDelta), m_DemoRecorder(&m_SnapshotD
 	m_ReceivedSnapshots = 0;
 
 	m_VersionInfo.m_State = CVersionInfo::STATE_INIT;
-
-	CV8Test *pTestV8 = new CV8Test();
-	delete pTestV8;
 }
 
 // ----- send functions -----
@@ -497,6 +495,9 @@ void CClient::OnEnterGame()
 	m_CurGameTick = 0;
 	m_PrevGameTick = 0;
 	m_CurMenuTick = 0;
+
+	CV8Test *pTestV8 = new CV8Test();
+	delete pTestV8;
 }
 
 void CClient::EnterGame()
