@@ -10,7 +10,7 @@ endif()
 
 if(NOT CMAKE_CROSSCOMPILING)
   find_package(PkgConfig QUIET)
-  pkg_check_modules(PC_V8 v8)
+  pkg_check_modules(PC_V8 REQUIRED IMPORTED_TARGET GLOBAL v8 v8_libplatform)
 endif()
 
 set_extra_dirs_lib(V8 v8)
