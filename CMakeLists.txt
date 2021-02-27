@@ -2118,6 +2118,9 @@ foreach(target ${TARGETS_LINK})
     target_link_libraries(${target} -stdlib=libc++)
     target_link_libraries(${target} -mmacosx-version-min=10.7)
   endif()
+  if(TARGET_OS STREQUAL "linux")
+    target_link_libraries(${target} -lv8)
+  endif()
   if((MINGW OR TARGET_OS STREQUAL "linux") AND PREFER_BUNDLED_LIBS)
     # Statically link the standard libraries with on MinGW/Linux so we don't
     # have to ship them as DLLs.
