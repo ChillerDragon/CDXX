@@ -1,5 +1,18 @@
+function file_exists(name)
+	local f=io.open(name,"r")
+	if f~=nil then io.close(f) return true else return false end
+end
+
+-- TODO: do this smarter
+GetBasePath = function ()
+	if file_exists("/usr/include/nodejs/deps/v8/include/v8.h") then
+		return "/usr/include/nodejs/deps/v8"
+	end
+	return PathDir(ModuleFilename())
+end
+
 V8 = {
-	basepath = PathDir(ModuleFilename()),
+	basepath = GetBasePath(),
 
 	OptFind = function (name, required)
 		local check = function(option, settings)
@@ -31,6 +44,9 @@ V8 = {
 				--settings.link.libs:Add("icuuc.dll")
 				settings.link.libs:Add("v8_libplatform.dll")
 				settings.link.libs:Add("zlib.dll")
+			else
+				settings.link.flags:Add("-lv8")
+				settings.cc.includes:Add(V8.basepath .. "/include")
 			end
 		end
 
