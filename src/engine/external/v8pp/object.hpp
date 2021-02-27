@@ -13,7 +13,7 @@
 
 #include <v8.h>
 
-#include "v8pp/convert.hpp"
+#include "convert.hpp"
 
 namespace v8pp {
 

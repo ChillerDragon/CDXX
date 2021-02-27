@@ -1,4 +1,4 @@
-#include "v8pp/json.hpp"
+#include "json.hpp"
 
 namespace v8pp {
 

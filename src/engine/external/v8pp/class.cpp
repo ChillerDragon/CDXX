@@ -1,7 +1,7 @@
-#include "v8pp/config.hpp"
+#include "config.hpp"
 
 #if !V8PP_HEADER_ONLY
-#include "v8pp/class.ipp"
+#include "class.ipp"
 
 namespace v8pp { namespace detail {
 

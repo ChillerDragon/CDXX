@@ -1,7 +1,7 @@
-#include "v8pp/config.hpp"
+#include "config.hpp"
 
 #if !V8PP_HEADER_ONLY
-#include "v8pp/convert.hpp"
+#include "convert.hpp"
 
 namespace v8pp {
 

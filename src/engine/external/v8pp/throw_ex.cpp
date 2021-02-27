@@ -1,5 +1,5 @@
-#include "v8pp/config.hpp"
+#include "config.hpp"
 
 #if !V8PP_HEADER_ONLY
-#include "v8pp/throw_ex.ipp"
+#include "throw_ex.ipp"
 #endif

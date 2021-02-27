@@ -1,4 +1,4 @@
-#include "v8pp/throw_ex.hpp"
+#include "throw_ex.hpp"
 
 namespace v8pp {
 
