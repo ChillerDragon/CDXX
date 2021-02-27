@@ -20,6 +20,8 @@ find_path(V8_INCLUDEDIR v8.h
   PATHS ${PATHS_V8_INCLUDEDIR}
 )
 
+find_file(V8_SNAPSHOT_BLOB bin/snapshot_blob.bin REQUIRED)
+
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(V8 DEFAULT_MSG V8_INCLUDEDIR)
 
@@ -27,5 +29,5 @@ mark_as_advanced(V8_INCLUDEDIR)
 
 if(V8_FOUND)
   set(V8_INCLUDE_DIRS ${V8_INCLUDEDIR})
-  set(V8_COPY_FILES)
+  set(V8_COPY_FILES ${V8_SNAPSHOT_BLOB})
 endif()
