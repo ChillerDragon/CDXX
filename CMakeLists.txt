@@ -1550,7 +1550,7 @@ if(CLIENT)
     ${PNGLITE_LIBRARIES}
     ${SDL2_LIBRARIES}
     ${WAVPACK_LIBRARIES}
-    ${V8_LIBRARIES}
+    PkgConfig::PC_V8
     ${PLATFORM_CLIENT_LIBS}
   )
 
@@ -1576,7 +1576,6 @@ if(CLIENT)
     $<TARGET_OBJECTS:game-shared>
   )
   target_link_libraries(${TARGET_CLIENT} ${LIBS_CLIENT})
-  target_link_libraries(${TARGET_CLIENT} PkgConfig::PC_V8) # not sure if its good to have this here (probably not xd)
 
   set(V8PP_INCLUDE_DIR src/engine/external/v8pp) # TODO: move xd
 
