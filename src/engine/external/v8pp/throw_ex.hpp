@@ -13,7 +13,7 @@
 
 #include <v8.h>
 
-#include "v8pp/config.hpp"
+#include "config.hpp"
 
 namespace v8pp {
 
@@ -36,7 +36,7 @@ inline v8::Local<v8::Value> throw_ex(v8::Isolate* isolate, std::string const& st
 } // namespace v8pp
 
 #if V8PP_HEADER_ONLY
-#include "v8pp/throw_ex.ipp"
+#include "throw_ex.ipp"
 #endif
 
 #endif // V8PP_THROW_EX_HPP_INCLUDED

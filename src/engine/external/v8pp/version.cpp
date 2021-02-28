@@ -1,5 +1,5 @@
-#include "v8pp/version.hpp"
+#include "version.hpp"
 
 #if !V8PP_HEADER_ONLY
-#include "v8pp/version.ipp"
+#include "version.ipp"
 #endif

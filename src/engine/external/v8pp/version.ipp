@@ -1,4 +1,4 @@
-#include "v8pp/version.hpp"
+#include "version.hpp"
 
 namespace v8pp {
 

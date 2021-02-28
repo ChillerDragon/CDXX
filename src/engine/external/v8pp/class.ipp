@@ -1,4 +1,4 @@
-#include "v8pp/class.hpp"
+#include "class.hpp"
 
 #include <cstdio> // for snprintf
 

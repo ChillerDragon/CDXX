@@ -13,7 +13,7 @@
 
 #include <v8.h>
 
-#include "v8pp/config.hpp"
+#include "config.hpp"
 
 namespace v8pp {
 
@@ -34,7 +34,7 @@ v8::Local<v8::Object> json_object(v8::Isolate* isolate, v8::Local<v8::Object> ob
 } // namespace v8pp
 
 #if V8PP_HEADER_ONLY
-#include "v8pp/json.ipp"
+#include "json.ipp"
 #endif
 
 #endif // V8PP_JSON_HPP_INCLUDED

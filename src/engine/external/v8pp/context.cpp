@@ -6,13 +6,13 @@
 // Distributed under the Boost Software License, Version 1.0. (See accompanying
 // file LICENSE_1_0.txt or copy at http://www.boost.org/LICENSE_1_0.txt)
 //
-#include "v8pp/context.hpp"
-#include "v8pp/config.hpp"
-#include "v8pp/convert.hpp"
-#include "v8pp/function.hpp"
-#include "v8pp/module.hpp"
-#include "v8pp/class.hpp"
-#include "v8pp/throw_ex.hpp"
+#include "context.hpp"
+#include "config.hpp"
+#include "convert.hpp"
+#include "function.hpp"
+#include "module.hpp"
+#include "class.hpp"
+#include "throw_ex.hpp"
 
 #include <fstream>
 

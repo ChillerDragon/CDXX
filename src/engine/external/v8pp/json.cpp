@@ -1,5 +1,5 @@
-#include "v8pp/config.hpp"
+#include "config.hpp"
 
 #if !V8PP_HEADER_ONLY
-#include "v8pp/json.ipp"
+#include "json.ipp"
 #endif

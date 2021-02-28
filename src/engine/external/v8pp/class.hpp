@@ -15,11 +15,11 @@
 #include <unordered_map>
 #include <vector>
 
-#include "v8pp/config.hpp"
-#include "v8pp/factory.hpp"
-#include "v8pp/function.hpp"
-#include "v8pp/property.hpp"
-#include "v8pp/ptr_traits.hpp"
+#include "config.hpp"
+#include "factory.hpp"
+#include "function.hpp"
+#include "property.hpp"
+#include "ptr_traits.hpp"
 
 namespace v8pp {
 
@@ -487,7 +487,7 @@ void cleanup(v8::Isolate* isolate);
 } // namespace v8pp
 
 #if V8PP_HEADER_ONLY
-#include "v8pp/class.ipp"
+#include "class.ipp"
 #endif
 
 #endif // V8PP_CLASS_HPP_INCLUDED

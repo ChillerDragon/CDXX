@@ -22,7 +22,7 @@
 #include <type_traits>
 #include <typeinfo>
 
-#include "v8pp/ptr_traits.hpp"
+#include "ptr_traits.hpp"
 
 namespace v8pp {
 

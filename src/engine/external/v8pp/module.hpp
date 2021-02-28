@@ -11,8 +11,8 @@
 
 #include <v8.h>
 
-#include "v8pp/function.hpp"
-#include "v8pp/property.hpp"
+#include "function.hpp"
+#include "property.hpp"
 
 namespace v8pp {
 

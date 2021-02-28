@@ -1550,7 +1550,7 @@ if(CLIENT)
     ${PNGLITE_LIBRARIES}
     ${SDL2_LIBRARIES}
     ${WAVPACK_LIBRARIES}
-    ${V8_LIBRARIES}
+    PkgConfig::PC_V8
     ${PLATFORM_CLIENT_LIBS}
   )
 
@@ -1577,12 +1577,15 @@ if(CLIENT)
   )
   target_link_libraries(${TARGET_CLIENT} ${LIBS_CLIENT})
 
+  set(V8PP_INCLUDE_DIR src/engine/external/v8pp) # TODO: move xd
+
   target_include_directories(${TARGET_CLIENT} PRIVATE
     ${FREETYPE_INCLUDE_DIRS}
     ${PNGLITE_INCLUDE_DIRS}
     ${SDL2_INCLUDE_DIRS}
     ${V8_INCLUDE_DIRS}
     ${WAVPACK_INCLUDE_DIRS}
+    ${V8PP_INCLUDE_DIR}
   )
 
   set(PARAMS "${WAVPACK_INCLUDE_DIRS};${WAVPACK_INCLUDE_DIRS}")
